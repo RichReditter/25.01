@@ -33,15 +33,7 @@ arr2.forEach( (e) => {
 
 
 // ДВА НУЛЯ
-// let arr3 = [];
-// let secondZeroInd = 0;
-// arr2.forEach( (element, index) => {
-//     if (element == '0'){
-//         secondZeroInd = index;
-//     }
-// });
-// arr3 = arr2.slice(secondZeroInd, secondZeroInd)
-// console.log(arr3)
+
 
 
 let positiveArray = [];
@@ -77,18 +69,18 @@ splitted.forEach( (e) => {
         moreThan5 += 1;
     }
 })
+let spl = str.split('')
 
-splittedE = splitted.map( (e) => {
-    return e.split('')
-})
-console.log(splittedE)
-splittedE.forEach( (e) =>{
-    if ( Number.isInteger(e)){
-        digits += e
+console.log(spl)
+spl.forEach( (e) =>{
+    if ( Number.isInteger(+e))
+    {
+        digits +=+e;
     }
 });
 console.log('Количество слов , содержащие больше 5 букв : ', moreThan5)
-console.log(digits)
+console.log('Сумма чисел',digits)
+console.log(spl)
 
 
 smallLetter = splitted.map( (e) => {
@@ -98,10 +90,35 @@ smallLetter = splitted.map( (e) => {
 console.log('Все буквы строчные: ',smallLetter)
 let middleLetter;
 withoutMiddleLetter = splitted.forEach( (e) => {
-    if( e.length % 2 !== 0){
-        middleLetter = (e.length / 2) + 1
-        withoutMiddleLetter = e.slice(middleLetter,middleLetter)
+    if( e.length % 2 !== 0 && e.length > 2){
+        middleLetter = Math.ceil(e.length / 2)
+        withoutMiddleLetter = e.slice(0, middleLetter-1) + e.slice(middleLetter);
+        console.log(withoutMiddleLetter)
+        return withoutMiddleLetter;
     }
 });
 console.log(withoutMiddleLetter)
 
+
+
+
+
+
+
+
+const reducer = (previousValue, currentValue) => previousValue + currentValue;
+reduced = arr2.reduce(reducer)
+console.log('Сумма чисел',reduced);
+len = arr2.length
+middleNumber = reduced / len
+console.log('среднее арифметическое: ',middleNumber)
+result = arr2.filter( number => number > middleNumber)
+
+console.log('Числа больше среднего арифметрического',result)
+
+
+
+arr3 = new Array(100);
+arr3 = arr3.fill(0)
+arr3 = arr3.map( n => Math.random()> 0.5 ? n : n*-1)
+console.log(arr3)
